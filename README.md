@@ -1,4 +1,4 @@
-# subatomicERROR.github.io
+#  https://subatomicerror.github.io/
 
 Welcome to the landing page for my projects in Quantum Machine Learning (Quantum-ML) and Quantum API (Quantum-API). This page showcases how I built these cutting-edge projects using AI and without any prior coding knowledge. Follow me on GitHub and Instagram to see how I did it!
 
