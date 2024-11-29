@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore cutting-edge projects in quantum machine learning and quantum APIs built by subatomicERROR.">
+    <meta name="description" content="Explore cutting-edge projects in quantum machine learning and quantum API built by subatomicERROR.">
     <meta name="keywords" content="quantum machine learning, quantum API, PennyLane, PyTorch, Next.js, FastAPI, subatomicERROR">
     <title>subatomicERROR</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,7 +54,7 @@
             color: #81e6d9;
         }
 
-        /* Dropdown Menu */
+        /* Dropdown */
         .dropdown {
             display: none;
             background-color: rgba(0, 0, 0, 0.8);
@@ -63,8 +64,10 @@
             z-index: 10;
             width: 200px;
             border-radius: 5px;
-            box-shadow: 0px 0px 15px rgba(56, 178, 172, 0.5);
+            box-shadow: 0 0 15px rgba(56, 178, 172, 0.5);
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            right: 20px; /* Move menu icon to the right */
+            top: 100%; /* Position below the menu icon */
         }
 
         .dropdown.active {
@@ -73,13 +76,28 @@
             transform: translateY(0);
         }
 
+        .dropdown::after {
+            content: '×';
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #38b2ac;
+            transition: color 0.3s;
+        }
+
+        .dropdown::after:hover {
+            color: #81e6d9;
+        }
+
         /* Navigation */
         .nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
+            padding: 20px 20px; /* Increase padding for a bigger top bar */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             z-index: 50;
             display: flex;
@@ -88,17 +106,16 @@
         }
 
         .nav .menu-icon {
-            display: inline-block;
             cursor: pointer;
             position: absolute;
             right: 20px; /* Move menu icon to the right */
         }
 
         .nav .menu-icon div {
-            width: 25px;
+            width: 30px;
             height: 3px;
             background: #38b2ac;
-            margin: 4px 0;
+            margin: 6px 0;
             transition: all 0.3s;
         }
 
@@ -144,9 +161,10 @@
         /* Section styling */
         .section {
             padding: 4rem 2rem;
-            margin-top: 10px;
+            margin: 10px;
             background: rgba(0, 0, 0, 0.9);
             border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
         }
 
         .section h2 {
@@ -159,13 +177,19 @@
             color: #cbd5e0;
         }
 
-        /* Use Case Section */
-        .use-case-section h3 {
-            color: #38b2ac; /* Match page theme */
+        .section h3 {
+            color: #38b2ac;
+            border-bottom: 2px solid #38b2ac;
+            margin-bottom: 1rem;
         }
 
-        .use-case-section h3.border-b-2 {
-            border-color: #38b2ac; /* Match page theme */
+        .section ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+        }
+
+        .section ul li {
+            margin-bottom: 0.5rem;
         }
 
         /* Icon Sizing and Alignment */
@@ -179,7 +203,6 @@
         /* Built Section */
         .built-section .group {
             transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
-            cursor: pointer;
         }
 
         .built-section .group:hover {
@@ -187,6 +210,18 @@
             box-shadow: 0 4px 20px rgba(56, 178, 172, 0.2);
             background: rgba(56, 178, 172, 0.1);
             color: #81e6d9;
+        }
+
+        /* Scroll animations */
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -202,7 +237,7 @@
         <div class="menu-items">
             <a href="#projects">Projects</a>
             <a href="#use-cases">Use Cases</a>
-            <a href="#built">Built</a>
+            <a href="#built">Built With</a>
             <a href="https://www.instagram.com/subatomicerror" target="_blank">Contact</a>
         </div>
     </nav>
@@ -211,19 +246,21 @@
     <div class="min-h-screen flex flex-col items-center justify-center pt-24">
         <!-- Header -->
         <header class="text-center mb-8">
-            <p class="mt-2 text-lg text-gray-400">by <span class="text-white">subatomicERROR</span> (Yash Ramteke)</p>
+            <p class="mt-2 text-lg text-gray-400">by <span class="text-teal-400">subatomicERROR</span> (Yash Ramteke)</p>
         </header>
 
-        <!-- Projects Section with Interactive Grid -->
+        <!-- Projects Section with Holographic Grid -->
         <section id="projects" class="section">
             <h2>Projects</h2>
-            <p>Explore cutting-edge projects in quantum machine learning, built using PennyLane, PyTorch, and Next.js. These projects demonstrate the power of quantum computing in enhancing machine learning models.</p>
+            <p class="text-lg font-semibold mb-4">
+                Explore cutting-edge projects in quantum machine learning, built using PennyLane, PyTorch, and Next.js. These projects demonstrate the power of quantum computing in enhancing machine learning models.
+            </p>
             <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 p-4 relative">
                 <!-- Project 1 -->
                 <div class="p-6 rounded-lg holo shine" onclick="toggleDropdown('quantum-ml-dropdown')">
-                    <h3 class="text-xl font-bold mb-2 text-teal-400">Quantum-ML</h3>
+                    <h3 class="text-xl font-bold mb-2">Quantum-ML</h3>
                     <p class="text-sm text-gray-300">
-                        A framework for integrating quantum computing into machine learning, using PennyLane and PyTorch for advanced quantum algorithms.
+                        A framework for integrating quantum computing into machine learning, using PennyLane and PyTorch.
                     </p>
                     <a href="https://github.com/subatomicERROR/Quantum-ML.git" class="text-teal-500 hover:underline mt-4 block">View on GitHub</a>
                     <!-- Dropdown for Use Cases -->
@@ -233,29 +270,28 @@
                             <li>Quantum-Enhanced Neural Networks</li>
                             <li>Quantum Optimization Algorithms</li>
                             <li>Hybrid Quantum-Classical Models</li>
-                            <li>Quantum Machine Learning on Noisy Devices</li>
+                            <li>Quantum Machine Learning for Noisy Devices</li>
                             <li>Quantum Data Preprocessing</li>
                             <li>Solving High-dimensional Problems</li>
                         </ul>
                     </div>
                 </div>
-
                 <!-- Project 2 -->
                 <div class="p-6 rounded-lg holo shine" onclick="toggleDropdown('quantum-api-dropdown')">
-                    <h3 class="text-xl font-bold mb-2 text-teal-400">Quantum-API</h3>
+                    <h3 class="text-xl font-bold mb-2">Quantum-API</h3>
                     <p class="text-sm text-gray-300">
-                        A RESTful API framework exposing quantum machine learning capabilities built with Next.js and FastAPI to connect services.
+                        A RESTful API that exposes quantum machine learning models, making them accessible via HTTP for various applications.
                     </p>
                     <a href="https://github.com/subatomicERROR/Quantum-API.git" class="text-teal-500 hover:underline mt-4 block">View on GitHub</a>
                     <!-- Dropdown for Use Cases -->
                     <div id="quantum-api-dropdown" class="dropdown">
                         <p><strong>Use Cases:</strong></p>
                         <ul>
-                            <li>Model Deployment with FastAPI</li>
-                            <li>Quantum-Enhanced API Responses</li>
-                            <li>Connecting External Quantum Computing Platforms</li>
-                            <li>Advanced Machine Learning API Calls</li>
-                            <li>API for Quantum Data Analysis</li>
+                            <li>Real-time Quantum Model Integration</li>
+                            <li>Data Preprocessing with Quantum Models</li>
+                            <li>Custom Quantum Algorithms via API</li>
+                            <li>API for Quantum-enhanced Optimization</li>
+                            <li>Quantum Data Analysis</li>
                             <li>Cloud Integration for Quantum APIs</li>
                         </ul>
                     </div>
@@ -263,95 +299,135 @@
             </div>
         </section>
 
-<!-- Built Section -->
-<section id="built" class="section built-section py-12">
-    <h2 class="text-center text-3xl font-extrabold text-teal-400 mb-6 shine">Built With</h2>
-    <p class="text-center text-gray-300 mb-8">
-        Our projects leverage the latest in quantum machine learning and web development technologies.
-    </p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4">
-        <!-- PyTorch -->
-        <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-            <div class="icon-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Pytorch_logo.png" alt="PyTorch" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
-            </div>
-            <h3 class="text-teal-400 text-xl font-semibold">PyTorch</h3>
-            <p class="text-base text-gray-300 mt-2">
-                Deep learning framework used to develop quantum machine learning models.
-            </p>
-        </div>
-        <!-- FastAPI -->
-        <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-            <div class="icon-container">
-                <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
-            </div>
-            <h3 class="text-teal-400 text-xl font-semibold">FastAPI</h3>
-            <p class="text-base text-gray-300 mt-2">
-                High-performance framework for building APIs with Python 3.7+ based on standard Python type hints.
-            </p>
-        </div>
-        <!-- Next.js -->
-        <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
-            <div class="icon-container">
-                <img src="https://nextjs.org/static/images/og.png" alt="Next.js" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
-            </div>
-            <h3 class="text-teal-400 text-xl font-semibold">Next.js</h3>
-            <p class="text-base text-gray-300 mt-2">
-                React-based framework for building server-side rendered and static web applications.
-            </p>
-        </div>
-        <!-- PennyLane -->
-        <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
-            <div class="icon-container">
-                <img src="https://pennylane.ai/images/logo.svg" alt="PennyLane" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
-            </div>
-            <h3 class="text-teal-400 text-xl font-semibold">PennyLane</h3>
-            <p class="text-base text-gray-300 mt-2">
-                Quantum machine learning library for hybrid quantum-classical computations.
-            </p>
-        </div>
-        <!-- Qiskit -->
-        <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center animate__animated animate__fadeInUp" style="animation-delay: 1s;">
-            <div class="icon-container">
-                <img src="https://qiskit.org/images/logo.svg" alt="Qiskit" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
-            </div>
-            <h3 class="text-teal-400 text-xl font-semibold">Qiskit</h3>
-            <p class="text-base text-gray-300 mt-2">
-                Open-source SDK for working with quantum computers at the level of circuits and algorithms.
-            </p>
-        </div>
-    </div>
-</section>
-
         <!-- Use Cases Section -->
         <section id="use-cases" class="section">
             <h2>Use Cases</h2>
             <p class="text-lg font-semibold mb-4">
                 Quantum-ML and Quantum-API can be applied to a variety of use cases, leveraging the power of quantum computing to solve complex problems more efficiently.
             </p>
-            
             <div class="use-case-section mb-8">
-                <h3 class="text-xl font-bold text-teal-400 border-b-2 border-teal-400 mb-4">Quantum-ML Use Cases</h3>
+                <h3 class="text-xl font-bold mb-4">Quantum-ML Use Cases</h3>
                 <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>Quantum Data Analysis:</strong> Perform large-scale data processing using quantum-enhanced algorithms, achieving faster results than traditional methods.</li>
-                    <li><strong>Quantum Model Training:</strong> Train machine learning models with quantum optimizations, enabling reduced training times and improved accuracy.</li>
-                    <li><strong>Quantum Feature Selection:</strong> Identify the most impactful features in datasets using quantum computations to boost predictive model performance.</li>
-                    <li><strong>Quantum Reinforcement Learning:</strong> Leverage quantum algorithms for reinforcement learning to tackle complex decision-making problems in robotics and AI.</li>
-                    <li><strong>Quantum Natural Language Processing:</strong> Enhance NLP applications, such as sentiment analysis or chatbots, with the speed and power of quantum techniques.</li>
-                    <li><strong>Quantum Financial Modeling:</strong> Apply quantum techniques to risk analysis, portfolio optimization, and financial forecasting for better outcomes.</li>
+                    <li><strong>Quantum-Enhanced Neural Networks:</strong> Improve the performance of neural networks using quantum algorithms.</li>
+                    <li><strong>Quantum Data Encoding:</strong> Encode data in quantum states for more efficient processing.</li>
+                    <li><strong>Quantum-Enhanced Optimization Algorithms:</strong> Solve complex optimization problems faster with quantum techniques.</li>
+                    <li><strong>Hybrid Quantum-Classical Models:</strong> Combine the strengths of classical and quantum computing.</li>
+                    <li><strong>Quantum Machine Learning for Drug Discovery:</strong> Accelerate the discovery of new drugs using quantum machine learning.</li>
+                    <li><strong>Quantum Simulation for Financial Modeling:</strong> Simulate financial scenarios more accurately with quantum computing.</li>
                 </ul>
             </div>
-            
-            <div class="use-case-section">
-                <h3 class="text-xl font-bold text-teal-400 border-b-2 border-teal-400 mb-4">Quantum-API Use Cases</h3>
+            <div class="use-case-section mb-8">
+                <h3 class="text-xl font-bold mb-4">Quantum-API Use Cases</h3>
                 <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>Real-Time Quantum Workloads:</strong> Use Quantum-API to execute quantum computations in real-time for critical applications such as financial markets.</li>
-                    <li><strong>Quantum Cloud Integration:</strong> Seamlessly connect to quantum devices in the cloud, enabling easy access to quantum hardware for developers and researchers.</li>
-                    <li><strong>Custom Quantum Applications:</strong> Build custom quantum computing solutions for industries like logistics, energy, and healthcare using Quantum-API.</li>
-                    <li><strong>Efficient API Management:</strong> Quantum-API simplifies the process of deploying, managing, and scaling quantum workflows via a robust backend.</li>
-                    <li><strong>Quantum Device Interfacing:</strong> Provide a bridge between classical applications and quantum hardware, ensuring smooth communication and task execution.</li>
-                    <li><strong>Scalable Quantum Microservices:</strong> Use Quantum-API to create scalable, modular microservices for quantum-enhanced AI applications.</li>
+                    <li><strong>Real-time Quantum Model Integration:</strong> Integrate quantum models into real-time applications.</li>
+                    <li><strong>Data Preprocessing with Quantum Models:</strong> Use quantum algorithms for data preprocessing.</li>
+                    <li><strong>Custom Quantum Algorithms via API:</strong>Develop and deploy custom quantum algorithms.</li>
+                    <li><strong>API for Quantum-enhanced Optimization:</strong> Provide optimization services using quantum computing.</li>
+                    <li><strong>Quantum Data Analysis:</strong> Analyze large datasets using quantum techniques.</li>
+                    <li><strong>Cloud Integration for Quantum APIs:</strong> Connect quantum APIs to cloud services for scalable solutions.</li>
                 </ul>
             </div>
         </section>
 
+        <!-- Built Section -->
+        <section id="built" class="section built-section py-12">
+            <h2 class="text-center text-2xl font-extrabold text-teal-400 mb-6">Built With</h2>
+            <p class="text-center text-gray-300 mb-8">
+                Our projects leverage the latest in quantum machine learning and web development technologies.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4">
+                <!-- Next.js -->
+                <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center">
+                    <div class="icon-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg" alt="Next.js" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110 filter invert">
+                    </div>
+                    <h3 class="text-teal-400 text-xl font-semibold">Next.js</h3>
+                    <p class="text-base text-gray-300 mt-2">
+                        React-based framework for building server-side rendered and static web applications.
+                    </p>
+                </div>
+                <!-- PyTorch -->
+                <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center">
+                    <div class="icon-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Pytorch_logo.png" alt="PyTorch" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
+                    </div>
+                    <h3 class="text-teal-400 text-xl font-semibold">PyTorch</h3>
+                    <p class="text-base text-gray-300 mt-2">
+                        Deep learning framework used to develop quantum machine learning models.
+                    </p>
+                </div>
+                <!-- FastAPI -->
+                <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center">
+                    <div class="icon-container">
+                        <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
+                    </div>
+                    <h3 class="text-teal-400 text-xl font-semibold">FastAPI</h3>
+                    <p class="text-base text-gray-300 mt-2">
+                        High-performance framework for building APIs with Python 3.7+ based on standard Python type hints.
+                    </p>
+                </div>
+                <!-- PennyLane -->
+                <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center">
+                    <div class="icon-container">
+                        <img src="https://pennylane.ai/assets/images/logo.svg" alt="PennyLane" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
+                    </div>
+                    <h3 class="text-teal-400 text-xl font-semibold">PennyLane</h3>
+                    <p class="text-base text-gray-300 mt-2">
+                        Open-source quantum machine learning library by Xanadu.
+                    </p>
+                </div>
+                <!-- Qiskit -->
+                <div class="group relative p-6 rounded-lg holo shine flex flex-col items-center text-center">
+                    <div class="icon-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Qiskit_logo.svg/1200px-Qiskit logo.svg.png" alt="Qiskit" class="w-28 h-28 mb-4 transition-transform transform group-hover:scale-110">
+                    </div>
+                    <h3 class="text-teal-400 text-xl font-semibold">Qiskit</h3>
+                    <p class="text-base text-gray-300 mt-2">
+                        Open-source framework for working with quantum computers at the level of circuits and algorithms.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contact Me</h2>
+            <p>I welcome your feedback and questions. Feel free to reach out to us via the following channels:</p>
+            <ul class="list-disc pl-6">
+                <li><strong>Email:</strong> iamyash.creator@gmail.com</li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/subatomicERROR/Quantum-ML" class="text-teal-500 hover:underline">https://github.com/subatomicERROR</a></li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/subatomicerror" class="text-teal-500 hover:underline">@subatomicERROR</a></li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/subatomicerror" class="text-teal-500 hover:underline">@xyashhxx</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav').classList.toggle('open');
+        }
+
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('active');
+        }
+
+        // Scroll animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
