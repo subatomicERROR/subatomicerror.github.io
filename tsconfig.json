@@ -1,5 +1,17 @@
 {
-  "files": [],
+  "compilerOptions": {
+    "target": "es5",                          // Set the target ECMAScript version
+    "lib": ["dom", "esnext"],                 // Include the necessary libraries
+    "jsx": "react-jsx",                       // Enable JSX transformation for React 17+
+    "moduleResolution": "node",               // Enable node module resolution strategy
+    "esModuleInterop": true,                  // Enable interop with CommonJS modules
+    "allowJs": true,                          // Allow JavaScript files in your TypeScript project
+    "strict": true,                           // Enable strict type-checking
+    "skipLibCheck": true                      // Skip checking of declaration files
+  },
+  "include": [
+    "src/**/*"  // Include all files in the src folder
+  ],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
