@@ -11,7 +11,7 @@ const technologies = [
   },
   {
     name: 'PennyLane',
-    description: 'A cross-platform Python library for differentiable programming of quantum computers.',
+    description: 'A cross-platform Python library for differentiable programming of quantum computers. It integrates with PyTorch and TensorFlow.',
     link: 'https://pennylane.ai/',
     logo: 'https://pennylane.ai/img/logo.png',
   },

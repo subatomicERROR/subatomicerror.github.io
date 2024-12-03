@@ -12,10 +12,5 @@ export default defineConfig({
     rollupOptions: {
       input: 'src/main.tsx',  // Ensure the correct entry point
     },
-    // This ensures the assets are placed in the correct folder
-    assetsDir: 'assets',
-    // If you want hashed filenames for cache busting (optional)
-    chunkFileNames: 'assets/[name].[hash].js',
-    entryFileNames: 'assets/[name].[hash].js',
   },
 });
