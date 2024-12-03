@@ -1,16 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
   build: {
-    outDir: 'dist',  // Specifies the output directory
-    rollupOptions: {
-      input: 'src/main.tsx',  // Ensure the correct entry point
-    },
+    outDir: 'dist',
   },
-});
+  base: '/subatomicerror.github.io/', // Set base for GitHub Pages
+})
